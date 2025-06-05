@@ -1,50 +1,66 @@
-```
-HashiCorp officially maintains and signs packages for the following Linux distributions.
+## HashiCorp Official Terraform Installation Guide (Debian/Ubuntu)
 
-- Ubuntu/Debian
-- CentOS/RHEL
-- Fedora 40
-- Fedora 41
-- Amazon Linux
+HashiCorp officially maintains and signs packages for the following Linux distributions:
 
-Ensure that your system is up to date and you have installed the gnupg, software-properties-common, and curl packages installed. You will use these packages to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository.
+- `Ubuntu/Debian`
+- `CentOS/RHEL`
+- `Fedora 40`
+- `Fedora 41`
+- `Amazon Linux`
 
-$ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+---
 
-Install the HashiCorp GPG key.
+## Step 1: Install Prerequisites
 
-$ wget -O- https://apt.releases.hashicorp.com/gpg | \
-gpg --dearmor | \
-sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+Ensure your system is up to date and install required packages:
 
-Verify the key's fingerprint.
+`sudo apt-get update && sudo apt-get install -y gnupg software-properties-common`
 
-$ gpg --no-default-keyring \
---keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
---fingerprint
+---
 
-The gpg command will report the key fingerprint:
+## Step 2: Install the HashiCorp GPG Key
 
-/usr/share/keyrings/hashicorp-archive-keyring.gpg
--------------------------------------------------
-pub   rsa4096 XXXX-XX-XX [SC]
-AAAA AAAA AAAA AAAA
-uid           [ unknown] HashiCorp Security (HashiCorp Package Signing) <security+packaging@hashicorp.com>
-sub   rsa4096 XXXX-XX-XX [E]
+`wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null`
 
-Tip
+---
 
-Refer to the Official Packaging Guide for the latest public signing key. You can also verify the key on Security at HashiCorp under Linux Package Checksum Verification.
+## Step 3: Verify the GPG Key Fingerprint
 
-Add the official HashiCorp repository to your system. The lsb_release -cs command finds the distribution release codename for your current system, such as buster, groovy, or sid.
+`gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint`
 
-$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+### Expected output:
 
-Download the package information from HashiCorp.
+`/usr/share/keyrings/hashicorp-archive-keyring.gpg`  
+`-------------------------------------------------`  
+`pub   rsa4096 XXXX-XX-XX [SC]`  
+`AAAA AAAA AAAA AAAA`  
+`uid           [ unknown] HashiCorp Security (HashiCorp Package Signing) <security+packaging@hashicorp.com>`  
+`sub   rsa4096 XXXX-XX-XX [E]`
 
-$ sudo apt update
+> Tip: Refer to the official packaging guide at `https://developer.hashicorp.com/terraform/downloads`.  
+> You can also verify the key on the HashiCorp security page under Linux Package Checksum Verification: `https://www.hashicorp.com/security`.
 
-Install Terraform from the new repository.
+---
 
-$ sudo apt-get install terraform
-```
+## Step 4: Add the HashiCorp Repository
+
+This command uses your system’s release codename (like `jammy`, `focal`, etc.):
+
+`echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list`
+
+---
+
+## Step 5: Update Package Information
+
+`sudo apt update`
+
+---
+
+## Step 6: Install Terraform
+
+`sudo apt-get install terraform`
+
+---
+
+You now have the official version of `Terraform` installed and maintained via the system’s package manager.
+
