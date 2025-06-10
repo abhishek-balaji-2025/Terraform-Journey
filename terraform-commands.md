@@ -32,14 +32,21 @@ This command is used when the user has created a custom variable definitions fil
 
 Note: Make sure there are no spaces in between 
 
-9. **`terraform --version`**
-This command is used to display the version of terraform installed on your system.
+9. **`terraform --version`**  
+   Displays the version of Terraform installed on your system.
 
-10. **`terraform workspace show`**
-This command is used to displays the current workspace in the terraform environment
+10. **`terraform workspace show`**  
+    Shows the currently active workspace in the Terraform environment.
 
-11. **`terraform workspace new <workspace-name>`**
-This command is used to create a new workspace in terraform environment
+11. **`terraform workspace new <workspace-name>`**  
+    Creates a new workspace with the specified name.
 
-12. **`terraform workspace select <workspace-name>`**
-This command is used to switch workspaces within the terraform environment
+12. **`terraform workspace select <workspace-name>`**  
+    Switches to the specified workspace.
+
+13. **`terraform state list`**  
+    Lists all resources managed by the current workspace.
+
+14. **`terraform destroy -target="resource-name"`**  
+    Destroys a specific resource managed by the current workspace.
+
