@@ -76,3 +76,13 @@ When a command like terraform apply runs, Terraform locks the state file to prev
 This prevents race conditions, corruption, and ensures safe collaboration in team environments.
 
 For remote backends like AWS S3 + DynamoDB, Terraform uses the DynamoDB table to manage locks automatically.
+
+## terraform apply with var-file
+
+`terraform apply -var-file="env-config/dev.tfvars"`
+
+This command loads variables from dev.tfvars and applies the configuration accordingly.
+Useful for managing multiple environments (dev, staging, prod).
+
+
+
