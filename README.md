@@ -84,5 +84,21 @@ For remote backends like AWS S3 + DynamoDB, Terraform uses the DynamoDB table to
 This command loads variables from dev.tfvars and applies the configuration accordingly.
 Useful for managing multiple environments (dev, staging, prod).
 
+## Terraform Workspace Commands
+
+- `terraform workspace list`  
+  Lists all available workspaces.
+
+- `terraform workspace new <workspace_name>`  
+  Creates a new workspace.
+
+- `terraform workspace select <workspace_name>`  
+  Switches to the specified workspace.
+
+- `terraform workspace show`  
+  Shows the name of the current workspace.
+
+- `terraform workspace delete <workspace_name>`  
+  Deletes the specified workspace (cannot delete `default`).
 
 
