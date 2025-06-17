@@ -6,3 +6,6 @@
 | `data`       | Reads existing infrastructure outside Terraform without creating it.            |
 | `variable`   | Defines input values to make configurations flexible and reusable.              |
 | `output`     | Displays useful information after applying (like IPs, names, or URLs).          |
+| `terraform`  | Defines settings for Terraform itself — like required providers, required versions, and backend configuration.        |
+| `data`       | Fetches read-only information from a provider (e.g., get AMI ID, list VPCs).        |
+
