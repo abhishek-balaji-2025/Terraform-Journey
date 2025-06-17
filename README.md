@@ -65,3 +65,14 @@ This command is used to check for errors in your Terraform configuration files. 
 This command is used when the user has created a custom variable definitions file (e.g., custom-terraform.tfvar) instead of the default terraform.tfvars. It explicitly tells Terraform to use this file for input variables during runtime when applying the changes.
 
 Note: Make sure there are no spaces in between 
+
+🔐 State Locking in Terraform
+
+State locking ensures that only one operation can modify the terraform.tfstate at a time.
+When a command like terraform apply runs, Terraform locks the state file to prevent concurrent updates by other users or processes.
+
+✅ A temporary file named terraform.tfstate.tflock is created during this process.
+
+This prevents race conditions, corruption, and ensures safe collaboration in team environments.
+
+For remote backends like AWS S3 + DynamoDB, Terraform uses the DynamoDB table to manage locks automatically.
